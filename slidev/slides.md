@@ -163,301 +163,560 @@ Our starting point and main focus is the Sámi languages, but everything that we
 
 ---
 
-# Navigation
+# Minority languages and requirements for LT development
 
-Hover on the bottom-left corner to see the navigation's controls panel, [learn more](https://sli.dev/guide/navigation.html)
-
-### Keyboard Shortcuts
-
-|     |     |
-| --- | --- |
-| <kbd>right</kbd> / <kbd>space</kbd>| next animation or slide |
-| <kbd>left</kbd>  / <kbd>shift</kbd><kbd>space</kbd> | previous animation or slide |
-| <kbd>up</kbd> | previous slide |
-| <kbd>down</kbd> | next slide |
-
-<!-- https://sli.dev/guide/animations.html#click-animations -->
-<img
-  v-click
-  class="absolute -bottom-9 -left-7 w-80 opacity-50"
-  src="https://sli.dev/assets/arrow-bottom-left.svg"
-/>
-<p v-after class="absolute bottom-23 left-45 opacity-30 transform -rotate-10">Here!</p>
+<!-- 2019 was the UN [International Year of Indigenous languages](https://en.iyil2019.org/). Our work directly supports the goals of IYIL 2019. -->
 
 ---
-layout: image-right
-image: https://source.unsplash.com/collection/94734566/1920x1080
+
+## Characteristics of minority language development
+
+Typically, minority languages share a number of characteristics:
+
+<v-clicks>
+
+* few or non-existing digital resources
+* restricted availability of dictionaries and grammar, or no at all
+* often complex morphology or morphophonology or both
+
+</v-clicks>
+
 ---
 
-# Code
+## Ownership
 
-Use code snippets and get the highlighting directly![^1]
+It is important that language communities have control over language resources relating to their language, in the sense that no private entity can block access to those resources. Otherwise the society will risk vendor lock-in, and expensive redevelopment of existing tools and resources.
 
-```ts {all|2|1-6|9|all}
-interface User {
-  id: number
-  firstName: string
-  lastName: string
-  role: string
-}
+> — Despite being aware of this, we have experienced it **twice**!
 
-function updateUser(id: number, update: User) {
-  const user = getUser(id)
-  const newUser = {...user, ...update}  
-  saveUser(id, newUser)
-}
+The best solution is to ensure that everythig is **open source**. All resources and tools in the GiellaLT infra are open source, unless forced to by software we integrate with (MS Office is one such case). Also, some language communities do not want their language to be openly accessible, due to a history of being colonialised, oppressed and their language becoming stigmatised. In such cases we of course accept their decission.
+
+![Open Source](/opensourceimages.jpg)
+
+---
+
+## Reuse and multiuse
+
+Because of the costs of language technology projects, it is important to build your infra and resources with reuse in mind, and also plan them so that everything is prepared for multiple usage scenarios.
+
+E.g. in the GiellaLT infrastructure, we have standardised conventions that makes it easy to build both normative and descriptive tools from the same codebase.
+
+* **normative:** tools that adhere strictly to an agreed-upon norm for writing, and try to correct text so that deviations are brought in line with the norm, like spelling checkers and grammar checkers.
+* **descriptive:** tools that try to process all texts in a language, irrespective of the normative properties of the text
+
+---
+
+## Mainly rule-based
+
+Language technology comes in several flavours:
+
+<v-clicks>
+
+* rule-based
+* statistical
+* stocastic
+* neural nets
+
+</v-clicks>
+
+Typical for all but the rule-based one is that they require large amounts of raw data to be trained on.
+
+---
+
+## Resource needs of rule-based technlogies
+
+Rule based technologies on the other hand, in principle only requires a mother
+tongue speaker and a linguist (which in the best of cases is one and the same person).
+
+![Rule-based](/fst_fst.png)
+
+---
+
+## Main sources for building the grammars and language resources
+
+<br/>
+<br/>
+
+<v-clicks>
+
+* digital dictionaries
+* grammars
+* korpus
+* native speakers
+
+</v-clicks>
+
+---
+
+# The GiellaLT infrastructure
+
+<br/>
+<br/>
+
+<v-clicks>
+
+* language independent infrastructure
+* scalability in two dimensions: languages x tools/products
+* standardised dir & file structure
+* encourages and fascilitates international cooperation
+* ~130 languages in our infra (at various stages), 30+ in active development
+    * almost all of them minority languages
+    * majority language grammars and LT resources mainly to support the minority languages
+
+</v-clicks>
+
+---
+
+## International cooperation
+
+<br/>
+
+<img src="/gtlangs_circumpolar_names.png" class="h-100 rounded shadow" />
+
+---
+
+## Some language repositories
+
+With maturity and license, bug and build status.
+
+<img src="/registry.png" class="m-10 h-190 rounded shadow" />
+
+---
+
+## Standardised dir structure
+
+```
+.
+├── devtools
+├── docs
+├── src
+│   ├── cg3
+│   ├── filters
+│   ├── fst
+│   ├── hyphenation
+│   ├── orthography
+│   ├── phonetics
+│   ├── scripts
+│   ├── tagsets
+│   └── transcriptions
+├── test
+│   ├── data
+│   ├── src
+│   └── tools
+└── tools
+    ├── analysers
+    ├── grammarcheckers
+    ├── hyphenators
+    ├── mt
+    ├── shellscripts
+    ├── spellcheckers
+    └── tokenisers
 ```
 
-<arrow v-click="3" x1="400" y1="420" x2="230" y2="330" color="#564" width="3" arrowSize="1" />
-
-[^1]: [Learn More](https://sli.dev/guide/syntax.html#line-highlighting)
-
-<style>
-.footnotes-sep {
-  @apply mt-20 opacity-10;
-}
-.footnotes {
-  @apply text-sm opacity-75;
-}
-.footnote-backref {
-  display: none;
-}
-</style>
+<!-- We are working on improving the direcotry structure and file organisation. -->
 
 ---
 
-# Components
+## Scalability
 
-<div grid="~ cols-2 gap-4">
-<div>
+<v-clicks>
 
-You can use Vue components directly inside your slides.
+* for languages:
+    * template for all resources needed
+* for tools:
+    * add support for a new tool to the template, and propagate it to all existing languages
+* core design principle:
+    * separate language independent processing from language-specific processing
 
-We have provided a few built-in components like `<Tweet/>` and `<Youtube/>` that you can use directly. And adding your custom components is also super easy.
+</v-clicks>
 
-```html
-<Counter :count="10" />
+<v-clicks>
+
+The templating system and the split between language independent and specific code ensures that we can add as many languages as we want, and easily add support for new tools and technologies.
+
+</v-clicks>
+
+---
+
+# «Linguistic programming»
+
+Formalisms / technologies used:
+
+* **morphology / morphophonology:** Hfst / Foma / Xerox
+    * lexc
+    * twolc
+    * xfst rewrite rules
+    * Xeroxs-style pmatch scripts
+* **syntax:** Constraint grammar (in the form of *VISLCG3* )
+
+All of these are open source except for the Xerox tools (which are free, though). Foma does not support TwolC (see further down).
+
+---
+
+## LexC
+
+<br/>
+<br/>
+
+<v-clicks>
+
+* an excellent formalism for concatenative morphology
+* typically, you specify stems and affixes in different lexicons
+* ... to allow for abstractions over stem classes and inflections
+* it is in essence a programming language for linguists
+* ... where you spell out the morphology of a language such that a compiler can turn it into an executable program (with the help of a run-time engine)
+
+</v-clicks>
+
+---
+
+## TwolC
+
+<br/>
+<br/>
+
+<v-clicks>
+
+* Formalism developed by Kimmo Koskenniemi in the early 80's to describe phonological processes
+* resembles quite closely generative rewrite rules of the form `A -> B / C _ D`
+* rules are unordered and applied in parallel
+
+</v-clicks>
+
+---
+
+## Xfst rewrite rules
+
+<br/>
+<br/>
+
+<v-clicks>
+
+* another formalism to describe phonology
+* main difference to TwolC: rules are ordered and applied in sequence
+
+</v-clicks>
+
+<v-clicks>
+
+Both TwolC and Xfst rewrite rules are supported by the GiellaLT infrastructure, compilation support is dependent on the compiler tool used: Foma does not support Twolc, everything else is supported by all tools.
+
+</v-clicks>
+
+---
+
+## Xeroxs-style pmatch scripts
+
+Hfst only, this formalism is an extension of the xfst rewrite rules, and are a reimplementation of work by Xerox around 10 years ago. It allowes for more complex text processing, and with a few modifications we have turned the formalism into a tokeniser-and-morphological-analyser that will also output ambiguous tokens. Such ambiguity can then be resolved using Constraint Grammar (see next), followed by a simple reformatter that rewrites tokens that are split in two.
+
+Using this setup it is possible to get the tokenisation almost perfect. In practice we still have some work to do, but we are already well above the alternative methods.
+
+The pmatch scripts are key to a recent addition to our infrastructure: rule-based grammar checking. We are also now developing text-to-speech systems using the pmatch scripts + VISLCG3 processing to turn raw text into disambiguated IPA text streams that can be fed to the synthesis engine.
+
+> For speech syntehsis this means that we use rule-based technologies for everything but the actual syntehsis modelling, reducing the corpus need to about 10 hours of studio recordings. That is within reach for most language communities.
+
+---
+
+## Constraint grammar
+
+
+<br/>
+<br/>
+
+<v-clicks>
+
+* formalism developed at Helsinki university by Fred Karlsson, later extended by Tapanainen (CG2), and further by the VISL project (CG3)
+* main idea is to remove or select specific possible readings of ambiguous words given context constraints:
+  > in the context of a subject personal pronoun, select a verb reading that agrees with the pronoun in person and number
+* used a lot in text parsers in combination with morphological analysers, giving very good results
+* also used in language technology tools and products such as machine translation and grammar checking since the late 1990's
+
+</v-clicks>
+
+---
+
+## Testing
+
+Systematic testing is essential, and the infrastructure supports several types of tests:
+
+* classes of words/inflections/alternations
+* lemmas
+* in-source test data
+
+Example test data (South Sámi):
+
+```
+Tests:
+
+  Verb - båetedh: # verb I, stem -ie, root vowel -åe-
+    båetedh+V+IV+Inf: båetedh
+    båetedh+V+IV+Ind+Prs+Sg1: båatam
+    båetedh+V+IV+Ind+Prs+Sg2: båatah
+    båetedh+V+IV+Ind+Prs+Sg3: båata
+    båetedh+V+IV+Ind+Prs+Du1: båetien
+    båetedh+V+IV+Ind+Prs+Du2: [båeteden, båetiejidien]
+    båetedh+V+IV+Ind+Prs+Du3: båetiejægan
+    båetedh+V+IV+Ind+Prs+Pl1: [båetebe, båetiejibie]
+    båetedh+V+IV+Ind+Prs+Pl2: [båetede, båetiejidie]
+    båetedh+V+IV+Ind+Prs+Pl3: båetieh
 ```
 
-<!-- ./components/Counter.vue -->
-<Counter :count="10" m="t-4" />
-
-Check out [the guides](https://sli.dev/builtin/components.html) for more.
-
-</div>
-<div>
-
-```html
-<Tweet id="1390115482657726468" />
-```
-
-<Tweet id="1390115482657726468" scale="0.65" />
-
-</div>
-</div>
-
+<!-- This can be used both as a development gold standard, and as regression testing later. -->
 
 ---
-class: px-20
+
+# Tools
+
 ---
 
-# Themes
+## Keyboards (desktop & mobile)
 
-Slidev comes with powerful theming support. Themes can provide styles, layouts, components, or even configurations for tools. Switching between themes by just **one edit** in your frontmatter:
-
-<div grid="~ cols-2 gap-2" m="-t-2">
+A very simple syntax (mobile keyboard shown):
 
 ```yaml
----
-theme: default
----
+modes:
+  mobile-default: |
+    á š e r t y u i o p ŋ
+    a s d f g h j k l đ ŧ
+       ž z č c v b n m
+  mobile-shift: |
+    Á Š E R T Y U I O P Ŋ
+    A S D F G H J K L Đ Ŧ
+       Ž Z Č C V B N M
 ```
 
-```yaml
----
-theme: seriph
----
-```
+This + a few more technical details is used to produce ready-to-use installers and keyboard apps.
 
-<img border="rounded" src="https://github.com/slidevjs/themes/blob/main/screenshots/theme-default/01.png?raw=true">
-
-<img border="rounded" src="https://github.com/slidevjs/themes/blob/main/screenshots/theme-seriph/01.png?raw=true">
-
-</div>
-
-Read more about [How to use a theme](https://sli.dev/themes/use.html) and
-check out the [Awesome Themes Gallery](https://sli.dev/themes/gallery.html).
-
----
-preload: false
----
-
-# Animations
-
-Animations are powered by [@vueuse/motion](https://motion.vueuse.org/).
-
-```html
-<div
-  v-motion
-  :initial="{ x: -80 }"
-  :enter="{ x: 0 }">
-  Slidev
-</div>
-```
-
-<div class="w-60 relative mt-6">
-  <div class="relative w-40 h-40">
-    <img
-      v-motion
-      :initial="{ x: 800, y: -100, scale: 1.5, rotate: -50 }"
-      :enter="final"
-      class="absolute top-0 left-0 right-0 bottom-0"
-      src="https://sli.dev/logo-square.png"
-    />
-    <img
-      v-motion
-      :initial="{ y: 500, x: -100, scale: 2 }"
-      :enter="final"
-      class="absolute top-0 left-0 right-0 bottom-0"
-      src="https://sli.dev/logo-circle.png"
-    />
-    <img
-      v-motion
-      :initial="{ x: 600, y: 400, scale: 2, rotate: 100 }"
-      :enter="final"
-      class="absolute top-0 left-0 right-0 bottom-0"
-      src="https://sli.dev/logo-triangle.png"
-    />
-  </div>
-
-  <div
-    class="text-5xl absolute top-14 left-40 text-[#2B90B6] -z-1"
-    v-motion
-    :initial="{ x: -80, opacity: 0}"
-    :enter="{ x: 0, opacity: 1, transition: { delay: 2000, duration: 1000 } }">
-    Slidev
-  </div>
-</div>
-
-<!-- vue script setup scripts can be directly used in markdown, and will only affects current page -->
-<script setup lang="ts">
-const final = {
-  x: 0,
-  y: 0,
-  rotate: 0,
-  scale: 1,
-  transition: {
-    type: 'spring',
-    damping: 10,
-    stiffness: 20,
-    mass: 2
-  }
-}
-</script>
-
-<div
-  v-motion
-  :initial="{ x:35, y: 40, opacity: 0}"
-  :enter="{ y: 0, opacity: 1, transition: { delay: 3500 } }">
-
-[Learn More](https://sli.dev/guide/animations.html#motion)
-
-</div>
+One can also add a speller file (fst-based spell checker), and get spelling correction as part of your mobile keyboard.
 
 ---
 
-# LaTeX
+### Final keyboard
 
-LaTeX is supported out-of-box powered by [KaTeX](https://katex.org/).
+The end result looks like this:
 
-<br>
-
-Inline $\sqrt{3x-1}+(1+x)^2$
-
-Block
-$$
-\begin{array}{c}
-
-\nabla \times \vec{\mathbf{B}} -\, \frac1c\, \frac{\partial\vec{\mathbf{E}}}{\partial t} &
-= \frac{4\pi}{c}\vec{\mathbf{j}}    \nabla \cdot \vec{\mathbf{E}} & = 4 \pi \rho \\
-
-\nabla \times \vec{\mathbf{E}}\, +\, \frac1c\, \frac{\partial\vec{\mathbf{B}}}{\partial t} & = \vec{\mathbf{0}} \\
-
-\nabla \cdot \vec{\mathbf{B}} & = 0
-
-\end{array}
-$$
-
-<br>
-
-[Learn more](https://sli.dev/guide/syntax#latex)
+<img src="/sme-keyboard-speller.jpeg" class="m-10 h-90 rounded shadow" />
 
 ---
 
-# Diagrams
+### It has a dark mode
 
-You can create diagrams / graphs from textual descriptions, directly in your Markdown.
+<img src="/sme-keyboard-speller-dark.jpeg" class="m-10 h-80 rounded shadow" />
 
-<div class="grid grid-cols-3 gap-10 pt-4 -mb-6">
+The speller is exactly the same fst-based speller as described below, with slight adaptions of the error model to fit the keyboard layout and the errors typically made.
 
-```mermaid {scale: 0.5}
-sequenceDiagram
-    Alice->John: Hello John, how are you?
-    Note over Alice,John: A typical interaction
-```
+---
+layout: two-cols
+---
 
-```mermaid {theme: 'neutral', scale: 0.8}
-graph TD
-B[Text] --> C{Decision}
-C -->|One| D[Result 1]
-C -->|Two| E[Result 2]
-```
+### Locale registration
 
-```plantuml {scale: 0.7}
-@startuml
+As part of the desktop keyboard installers, the locale of the keyboard is added to the system:
 
-package "Some Group" {
-  HTTP - [First Component]
-  [Another Component]
-}
+<v-click>
 
-node "Other Groups" {
-  FTP - [Second Component]
-  [First Component] --> FTP
-}
+<img src="/crk-Latn.png" class="m-10 h-80 rounded shadow" />
 
-cloud {
-  [Example 1]
-}
+</v-click>
 
+::right::
 
-database "MySql" {
-  folder "This is my folder" {
-    [Folder 3]
-  }
-  frame "Foo" {
-    [Frame 4]
-  }
-}
+<br/>
 
+<v-clicks>
 
-[Another Component] --> [Example 1]
-[Example 1] --> [Folder 3]
-[Folder 3] --> [Frame 4]
+So that languages unknown to Windows and macOS is subsequently known and can be used for spell checking:
 
-@enduml
-```
+![Plains Cree in MS Word](/PlainsCreeWord.png)
 
-</div>
+</v-clicks>
 
-[Learn More](https://sli.dev/guide/syntax.html#diagrams)
+---
 
+## Spellers
+
+A speller is made up of two parts:
+
+1. an acceptor - is this a correct word or not?
+1. an error model - if this is not a word, how is it most likely to be corrected?
+
+In our infrastructure, both are finite state transducers. The acceptor is built from our general analyser, but restricted to only normatively correct forms.
+
+The error model contains a standard permutation fst for the relevant alphabet, with language specific additions based on likely errors made by writers.
+
+---
+
+### Short turnaround during development
+
+1. add a word, correct some part of the morphology
+1. compile
+1. test in e.g. LibreOffice or on the command line
+
+Compilation time varies a lot depending on the language and the size and
+complexity of the lexicon, the morphology and the morphophonology.
+
+---
+layout: two-cols
+---
+
+### Host app integration
+
+<br/>
+<br/>
+
+<v-clicks>
+
+* MS Word (Windows, macOS coming)
+* LibreOffice (all OS's)
+* System wide spellers (Windows, macOS, Linux)
+* mobile keyboard apps
+* web server
+
+</v-clicks>
+
+::right::
+
+<v-clicks>
+
+![Speller online](/speller_online.png)
+
+</v-clicks>
+
+---
+
+## Hyphenation
+
+<br/>
+<br/>
+
+* uses rewrite rules to identify syllable structure = hyphenation points
+* uses analyser (lexicon) to find word boundaries and exceptional hyphenation
+
+---
+
+## Grammar checkers
+
+<br/>
+<br/>
+
+<v-clicks>
+
+* morphological analyser for analysis and tokenisation
+* includes disambiguation of multiword expressions
+* a tagger for whitespace errors
+* runs the spelling checker on unknown words
+* constraint grammars for both disambiguation and error detection, as well as for selecting or filtering speller suggestions based on context
+* uses valency info and semantic tags to avoid reliance on (faulty) morphology and syntax
+* new research comming out of this:
+  * improvements to sentence border detection (near-perfect results possible)
+  * improvements to tokenisation and whitespace handling - we can detect compounds erroneously written apart (not very well handled or not at all by most other grammar checkers)
+
+</v-clicks>
 
 ---
 layout: center
-class: text-center
 ---
 
-# Learn More
+### Grammar checker flow chart
 
-[Documentations](https://sli.dev) · [GitHub](https://github.com/slidevjs/slidev) · [Showcases](https://sli.dev/showcases.html)
+<img src="/GramCheckFlow2.0.png" class="h-120 rounded shadow" />
+
+---
+
+### The grammar checker works in
+
+<br/>
+<br/>
+
+* MS Word (web version for now, Win and Mac coming later)
+* GoogleDocs
+* planned support:
+    * macOS (system wide), possibly Windows
+    * LibreOffice
+
+---
+
+### Screen shot from LibreOffice:
+
+![Grammar checker](/LO-gram.png)
+
+---
+
+### Screen shot from MS Word (web version):
+
+![Grammar checker](/Word-gram.png)
+
+<!-- ### Screen shot from online grammar checker:
+
+![Grammar checker](/gram-gram.png) -->
+
+---
+
+### Grammar Checker Demo
+
+---
+
+## Text-to-speech systems
+
+* recordings and text available
+* technology unfortunately from a commercial company = closed source code
+  * we have now been hunted by this - they are closing down the macOS version
+  * we had fortunately already planned a new project for Julev Sámi that is completely built using open source, so we should be good in a couple of years
+* quality very good
+* the original plan was to use our own text processing for conversion to IPA or similar,
+  we are doing that in our new project
+* the idea is to use roughly the same text processing as we use for the grammar checker to produce a phonetic transcription, and feed that to the synthesis engine
+
+---
+
+## dictionaries
+
+* content from several sources
+* morphological analysis to enable looking up directly in text
+    * web browsers
+    * macOS and Windows apps
+
+![NDS](/neahttadigisaanit_reader_bubble_cutted.png)
+
+---
+
+## language learning
+
+* analysing reader input
+* adapting suggested forms according to user preferences
+
+---
+
+## Korp
+
+* database and interface for searching an analysed corpus
+* morphological analysis, disambiguation, syntactic parsing using our tools
+* corpus data available in many languages
+
+![Korp](/korp_boahtit.png)
+
+---
+
+# Summary
+
+* one source for everything
+* reuse and multiple usages
+* summarised in the following illustration:
+
+<br/>
+
+<img src="/hus_eng_ny.png" class="h-80 rounded shadow" />
+
+---
+
+# Links
+
+Everything easily accessible in GitHub, everyone can edit and contribute.
+
+<br/>
+
+- Divvun tools & download: [divvun.no](https://divvun.no/) & [divvun.org](https://divvun.org/)
+- Language resources & source code: [github.com/giellalt](https://github.com/giellalt/)
+- Tool source code: [github.com/divvun](https://github.com/divvun/)
+- Korp:  [gtweb.uit.no/korp/](http://gtweb.uit.no/korp/)
+- Machine translation: [jorgal.uit.no](http://jorgal.uit.no/)
