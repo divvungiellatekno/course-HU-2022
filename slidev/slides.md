@@ -82,39 +82,76 @@ A very brief history
 
 ### The first language technology
 
-![Cuneiroms](images/cuneiform.jpg)
+![Cuneiforms](/cuneiform.jpg)
 
 ---
 
-Some later instances of long-lasting language technology:
+### Some later instances of long-lasting language technology
 
-![Runes](images/jelling runestone.jpg)
+![Runes](/jelling%20runestone.jpg)
 
-![Gutenberg](images/printpress.jpg)
+---
 
-Today we talk about information technology — Internet a.o.
+### Some later instances of long-lasting language technology
 
-![Internet](images/internet.jpg)
+![Gutenberg](/printpress.jpg)
 
-and the term language technology is restricted to actual processing of language data - be it speech or text or video (as when processing signed languages). The ultimate dream of language technology is speech-to-speech machine translation:
+---
 
-![Traveling](images/spoken-MT-images.jpg)
+### Today — information technology
+
+Internet a.o.
+
+![Internet](/internet.jpg)
+
+---
+
+### Language technology proper
+
+The term language technology is restricted to actual processing of language data
+- be it speech or text or video (as when processing signed languages).
+The ultimate dream of language technology is speech-to-speech machine translation
+of unrestricted language:
+
+![Traveling](/spoken-MT-images.jpg)
+
+---
+
+## Language technology is transformative
 
 In all cases language (and information) technology has been pretty transformative.
+
+<v-click>
+
+### … and divisive
 
 Another typical characteristic of language technology is that it is divisive:
 
 * those with access
 * those without
 
-![digital divide](images/293-2067-1-PB.jpg)
+![digital divide](/293-2067-1-PB.jpg)
 
-empovering those with access, leaving those without behind. As such it can easily be a driver in language death: to take part in the society at large, you can't use your own language because the society expects use of certain technologies:
+</v-click>
+
+---
+
+## LT divide
+
+Empovering those with access, leaving those without behind. As such it can easily
+be a driver in language death. To take part in the society at large, you can't
+use your own language because the society expects use of certain technologies:
+
+<v-clicks>
 
 * a certain alphabet or writing system — ie literacy
 * access to a printing press
 * access to computers
 * access to your letters on that computer
+
+</v-clicks>
+
+<v-clicks>
 
 For speakers of most of the languages of the world (there are about 7000) one or several of the points above are **not true**, and will only add to all the other factors driving language death.
 
@@ -122,6 +159,7 @@ One of the main objectives of the **GiellaLT** infrastructure is to help counter
 
 Our starting point and main focus is the Sámi languages, but everything that we make is language independent (except for the linguistic data, obviously), and we actively cooperate with other groups to extend the reach of our technology.
 
+</v-clicks>
 
 ---
 
