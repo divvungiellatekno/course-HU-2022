@@ -94,7 +94,7 @@ A very brief history
 
 ### Some later instances of long-lasting language technology
 
-![Gutenberg](/printpress.jpg)
+<img src="/printpress.jpg" class="h-120 rounded shadow" />
 
 ---
 
@@ -102,7 +102,7 @@ A very brief history
 
 Internet a.o.
 
-![Internet](/internet.jpg)
+<img src="/internet.jpg" class="h-120 rounded shadow" />
 
 ---
 
@@ -113,7 +113,7 @@ The term language technology is restricted to actual processing of language data
 The ultimate dream of language technology is speech-to-speech machine translation
 of unrestricted language:
 
-![Traveling](/spoken-MT-images.jpg)
+<img src="/spoken-MT-images.jpg" class="h-100 rounded shadow" />
 
 ---
 
@@ -138,8 +138,8 @@ Another typical characteristic of language technology is that it is divisive:
 
 ## LT divide
 
-Empovering those with access, leaving those without behind. As such it can easily
-be a driver in language death. To take part in the society at large, you can't
+Empowering those with access, leaving those without behind. As such it can easily
+be a driver in language death — to take part in the society at large, you can't
 use your own language because the society expects use of certain technologies:
 
 <v-clicks>
@@ -169,15 +169,21 @@ Our starting point and main focus is the Sámi languages, but everything that we
 
 ---
 
-## Characteristics of minority language development
+## Characteristics of minority language technology development
 
 Typically, minority languages share a number of characteristics:
 
 <v-clicks>
 
 * few or non-existing digital resources
-* restricted availability of dictionaries and grammar, or no at all
+* restricted availability of dictionaries and grammars, or none at all
 * often complex morphology or morphophonology or both
+
+</v-clicks>
+
+<v-clicks>
+
+That is, the dominating language technology paradigm (ML) has nothing to offer.
 
 </v-clicks>
 
@@ -189,20 +195,20 @@ It is important that language communities have control over language resources r
 
 > — Despite being aware of this, we have experienced it **twice**!
 
-The best solution is to ensure that everythig is **open source**. All resources and tools in the GiellaLT infra are open source, unless forced to by software we integrate with (MS Office is one such case). Also, some language communities do not want their language to be openly accessible, due to a history of being colonialised, oppressed and their language becoming stigmatised. In such cases we of course accept their decission.
+The best solution is to ensure that everything is **open source**. All resources and tools in the GiellaLT infra are open source, unless forced to by software we integrate with (MS Office is one such case). Also, some language communities do not want their language to be openly accessible, due to a history of being colonialised, oppressed and their language becoming stigmatised. In such cases we of course follow their decision.
 
 ![Open Source](/opensourceimages.jpg)
 
 ---
 
-## Reuse and multiuse
+## Reuse and multi-use
 
 Because of the costs of language technology projects, it is important to build your infra and resources with reuse in mind, and also plan them so that everything is prepared for multiple usage scenarios.
 
 E.g. in the GiellaLT infrastructure, we have standardised conventions that makes it easy to build both normative and descriptive tools from the same codebase.
 
-* **normative:** tools that adhere strictly to an agreed-upon norm for writing, and try to correct text so that deviations are brought in line with the norm, like spelling checkers and grammar checkers.
-* **descriptive:** tools that try to process all texts in a language, irrespective of the normative properties of the text
+* **normative:** tools that adhere strictly to an agreed-upon norm for writing, and try to correct text so that deviations are brought in line with the norm: spelling checkers and grammar checkers.
+* **descriptive:** tools that try to process all texts in a language, including erroneous and non-standard texts
 
 ---
 
@@ -214,19 +220,23 @@ Language technology comes in several flavours:
 
 * rule-based
 * statistical
-* stocastic
+* stochastic
 * neural nets
 
 </v-clicks>
 
+<v-clicks>
+
 Typical for all but the rule-based one is that they require large amounts of raw data to be trained on.
-
----
-
-## Resource needs of rule-based technlogies
 
 Rule based technologies on the other hand, in principle only requires a mother
 tongue speaker and a linguist (which in the best of cases is one and the same person).
+
+</v-clicks>
+
+---
+
+## Basic working of rule-based technologies
 
 ![Rule-based](/fst_fst.png)
 
@@ -241,7 +251,7 @@ tongue speaker and a linguist (which in the best of cases is one and the same pe
 
 * digital dictionaries
 * grammars
-* korpus
+* corpus
 * native speakers
 
 </v-clicks>
@@ -258,7 +268,7 @@ tongue speaker and a linguist (which in the best of cases is one and the same pe
 * language independent infrastructure
 * scalability in two dimensions: languages x tools/products
 * standardised dir & file structure
-* encourages and fascilitates international cooperation
+* encourages and facilitates international cooperation
 * ~130 languages in our infra (at various stages), 30+ in active development
     * almost all of them minority languages
     * majority language grammars and LT resources mainly to support the minority languages
@@ -277,7 +287,7 @@ tongue speaker and a linguist (which in the best of cases is one and the same pe
 
 ## Some language repositories
 
-With maturity and license, bug and build status.
+With maturity and license, bug and build status ([github.com/divvun/registry](https://github.com/divvun/registry)).
 
 <img src="/registry.png" class="m-10 h-190 rounded shadow" />
 
@@ -313,7 +323,7 @@ With maturity and license, bug and build status.
     └── tokenisers
 ```
 
-<!-- We are working on improving the direcotry structure and file organisation. -->
+<!-- We are working on improving the directory structure and file organisation. -->
 
 ---
 
@@ -346,7 +356,7 @@ Formalisms / technologies used:
     * lexc
     * twolc
     * xfst rewrite rules
-    * Xeroxs-style pmatch scripts
+    * Xerox-style pmatch scripts
 * **syntax:** Constraint grammar (in the form of *VISLCG3* )
 
 All of these are open source except for the Xerox tools (which are free, though). Foma does not support TwolC (see further down).
@@ -368,6 +378,18 @@ All of these are open source except for the Xerox tools (which are free, though)
 
 </v-clicks>
 
+<v-clicks>
+
+```
+LEXICON Root
+  iloinen:iloi nen-inflection ;
+
+LEXICON nen-inflection
+  +A+Sg+Gen:sen # ;
+```
+
+</v-clicks>
+
 ---
 
 ## TwolC
@@ -378,7 +400,10 @@ All of these are open source except for the Xerox tools (which are free, though)
 <v-clicks>
 
 * Formalism developed by Kimmo Koskenniemi in the early 80's to describe phonological processes
-* resembles quite closely generative rewrite rules of the form `A -> B / C _ D`
+* resembles quite closely generative rewrite rules of the form:
+   ```
+   A -> B / C _ D
+   ```
 * rules are unordered and applied in parallel
 
 </v-clicks>
@@ -405,15 +430,19 @@ Both TwolC and Xfst rewrite rules are supported by the GiellaLT infrastructure, 
 
 ---
 
-## Xeroxs-style pmatch scripts
+## Xerox-style pmatch scripts
 
-Hfst only, this formalism is an extension of the xfst rewrite rules, and are a reimplementation of work by Xerox around 10 years ago. It allowes for more complex text processing, and with a few modifications we have turned the formalism into a tokeniser-and-morphological-analyser that will also output ambiguous tokens. Such ambiguity can then be resolved using Constraint Grammar (see next), followed by a simple reformatter that rewrites tokens that are split in two.
+<v-clicks>
+
+Hfst only, this formalism is an extension of the xfst rewrite rules, and are a reimplementation of work by Xerox around 10 years ago. It allows for more complex text processing, and with a few modifications we have turned the formalism into a tokeniser-and-morphological-analyser that will also output ambiguous tokens. Such ambiguity can then be resolved using Constraint Grammar (see next), followed by a simple reformatter that rewrites tokens that are split in two.
 
 Using this setup it is possible to get the tokenisation almost perfect. In practice we still have some work to do, but we are already well above the alternative methods.
 
 The pmatch scripts are key to a recent addition to our infrastructure: rule-based grammar checking. We are also now developing text-to-speech systems using the pmatch scripts + VISLCG3 processing to turn raw text into disambiguated IPA text streams that can be fed to the synthesis engine.
 
-> For speech syntehsis this means that we use rule-based technologies for everything but the actual syntehsis modelling, reducing the corpus need to about 10 hours of studio recordings. That is within reach for most language communities.
+> For speech synthesis this means that we use rule-based technologies for everything but the actual synthesis modelling, reducing the corpus need to about 10 hours of studio recordings. That is within reach for most language communities.
+
+</v-clicks>
 
 ---
 
@@ -607,7 +636,7 @@ layout: two-cols
 * runs the spelling checker on unknown words
 * constraint grammars for both disambiguation and error detection, as well as for selecting or filtering speller suggestions based on context
 * uses valency info and semantic tags to avoid reliance on (faulty) morphology and syntax
-* new research comming out of this:
+* new research coming out of this:
   * improvements to sentence border detection (near-perfect results possible)
   * improvements to tokenisation and whitespace handling - we can detect compounds erroneously written apart (not very well handled or not at all by most other grammar checkers)
 
