@@ -2,7 +2,7 @@
 # try also 'default' to start simple
 theme: seriph
 # random image from a curated Unsplash collection by Anthony
-# like them? see https://unsplash.com/collections/94734566/slidev
+# like them? see <https://unsplash.com/collections/94734566/slidev>
 background: https://source.unsplash.com/collection/94734566/1920x1080
 # apply any windi css classes to the current slide
 class: 'text-center'
@@ -19,6 +19,7 @@ info: |
 # persist drawings in exports and build
 drawings:
   persist: false
+title: "LT for minority languages & the GiellaLT infrastructure"
 ---
 
 # LT for minority languages & the GiellaLT infrastructure
@@ -29,18 +30,21 @@ UiT Noregs arktiske universitet
 
 ---
 
-# Table of Content
+Presentation plan:
 
-<Toc columns="3" maxDepth="2"/>
+<br/>
+<br/>
 
----
+<Toc columns="2" maxDepth="1"/>
+
+<!--
 
 # Main sections
 
 <v-clicks>
 
-- introduction
-- minority languages and requirements for LT development
+- Introduction
+- Minority languages and requirements for LT development
 - GiellaLT infra
 - lexc & twolc as linguistic programming languages
 - development
@@ -51,14 +55,13 @@ UiT Noregs arktiske universitet
 
 </v-clicks>
 
+-->
+
 ---
 layout: section
 ---
 
 # Introduction
-
-- About me
-- What is language technology
 
 ---
 
@@ -75,6 +78,7 @@ layout: section
 * Sámi Parliament
 * UiT the Arctic University of Norway
 * heading the Divvun group at UiT
+* 30 years experience with language technology
 
 </v-clicks>
 
@@ -82,9 +86,10 @@ layout: section
 
 ## What is language technology
 
-A very brief history
+<br/>
+<br/>
 
-### From cuneiform to speech recognition
+A very brief history — from cuneiform to speech recognition
 
 ---
 
@@ -293,19 +298,24 @@ layout: section
 
 ---
 
-## International cooperation
+## Scalability
 
-<br/>
+<v-clicks>
 
-<img src="/gtlangs_circumpolar_names.png" class="h-100 rounded shadow" />
+* for languages:
+    * template for all resources needed
+* for tools:
+    * add support for a new tool to the template, and propagate it to all existing languages
+* core design principle:
+    * separate language independent processing from language-specific processing
 
----
+</v-clicks>
 
-## Some language repositories
+<v-clicks>
 
-With maturity and license, bug and build status ([github.com/divvun/registry](https://github.com/divvun/registry)).
+The templating system and the split between language independent and specific code ensures that we can add as many languages as we want, and easily add support for new tools and technologies.
 
-<img src="/registry.png" class="m-10 h-190 rounded shadow" />
+</v-clicks>
 
 ---
 
@@ -343,30 +353,25 @@ With maturity and license, bug and build status ([github.com/divvun/registry](ht
 
 ---
 
-## Scalability
+## International cooperation
 
-<v-clicks>
+<br/>
 
-* for languages:
-    * template for all resources needed
-* for tools:
-    * add support for a new tool to the template, and propagate it to all existing languages
-* core design principle:
-    * separate language independent processing from language-specific processing
+<img src="/gtlangs_circumpolar_names.png" class="h-100 rounded shadow" />
 
-</v-clicks>
+---
 
-<v-clicks>
+## Some language repositories
 
-The templating system and the split between language independent and specific code ensures that we can add as many languages as we want, and easily add support for new tools and technologies.
+With maturity and license, bug and build status ([github.com/divvun/registry](https://github.com/divvun/registry)).
 
-</v-clicks>
+<img src="/registry.png" class="m-10 h-190 rounded shadow" />
 
 ---
 layout: section
 ---
 
-# «Linguistic programming»
+# Linguistic programming
 
 ---
 
@@ -706,11 +711,9 @@ layout: center
 ![Grammar checker](/gram-gram.png)
 -->
 
----
-layout: section
----
-
+<!--
 ### Grammar Checker Demo
+-->
 
 ---
 
@@ -776,7 +779,7 @@ layout: section
 
 ---
 
-# Links
+## Links
 
 Everything easily accessible in GitHub, everyone can edit and contribute.
 
