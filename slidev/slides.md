@@ -29,6 +29,12 @@ UiT Noregs arktiske universitet
 
 ---
 
+# Table of Content
+
+<Toc columns="3" maxDepth="2"/>
+
+---
+
 # Main sections
 
 <v-clicks>
@@ -45,6 +51,8 @@ UiT Noregs arktiske universitet
 
 </v-clicks>
 
+---
+layout: section
 ---
 
 # Introduction
@@ -162,10 +170,12 @@ Our starting point and main focus is the Sámi languages, but everything that we
 </v-clicks>
 
 ---
+layout: section
+---
 
 # Minority languages and requirements for LT development
 
-<!-- 2019 was the UN [International Year of Indigenous languages](https://en.iyil2019.org/). Our work directly supports the goals of IYIL 2019. -->
+<!-- 2022 marks the start of the UN [International Decade for Indigenous languages](https://en.unesco.org/idil2022-2032). Our work directly supports the goals of IDIL 2022-32. -->
 
 ---
 
@@ -257,8 +267,14 @@ tongue speaker and a linguist (which in the best of cases is one and the same pe
 </v-clicks>
 
 ---
+layout: section
+---
 
 # The GiellaLT infrastructure
+
+---
+
+## Main features of the GiellaLT infrastructure
 
 <br/>
 <br/>
@@ -347,10 +363,17 @@ The templating system and the split between language independent and specific co
 </v-clicks>
 
 ---
+layout: section
+---
 
 # «Linguistic programming»
 
-Formalisms / technologies used:
+---
+
+## Formalisms / technologies used
+
+<br/>
+<br/>
 
 * **morphology / morphophonology:** Hfst / Foma / Xerox
     * lexc
@@ -492,6 +515,8 @@ Tests:
 
 <!-- This can be used both as a development gold standard, and as regression testing later. -->
 
+---
+layout: section
 ---
 
 # Tools
@@ -663,11 +688,11 @@ layout: center
     * macOS (system wide), possibly Windows
     * LibreOffice
 
----
-
+<!--
 ### Screen shot from LibreOffice:
 
 ![Grammar checker](/LO-gram.png)
+-->
 
 ---
 
@@ -675,10 +700,14 @@ layout: center
 
 ![Grammar checker](/Word-gram.png)
 
-<!-- ### Screen shot from online grammar checker:
+<!--
+### Screen shot from online grammar checker:
 
-![Grammar checker](/gram-gram.png) -->
+![Grammar checker](/gram-gram.png)
+-->
 
+---
+layout: section
 ---
 
 ### Grammar Checker Demo
@@ -698,7 +727,10 @@ layout: center
 
 ---
 
-## dictionaries
+## Dictionaries
+
+<br/>
+<br/>
 
 * content from several sources
 * morphological analysis to enable looking up directly in text
@@ -709,7 +741,10 @@ layout: center
 
 ---
 
-## language learning
+## Language learning
+
+<br/>
+<br/>
 
 * analysing reader input
 * adapting suggested forms according to user preferences
@@ -717,6 +752,9 @@ layout: center
 ---
 
 ## Korp
+
+<br/>
+<br/>
 
 * database and interface for searching an analysed corpus
 * morphological analysis, disambiguation, syntactic parsing using our tools
@@ -749,3 +787,7 @@ Everything easily accessible in GitHub, everyone can edit and contribute.
 - Tool source code: [github.com/divvun](https://github.com/divvun/)
 - Korp:  [gtweb.uit.no/korp/](http://gtweb.uit.no/korp/)
 - Machine translation: [jorgal.uit.no](http://jorgal.uit.no/)
+
+---
+layout: end
+---
