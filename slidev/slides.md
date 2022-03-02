@@ -400,7 +400,8 @@ All of these are open source except for the Xerox tools (which are free, though)
 * typically, you specify stems and affixes in different lexicons
 * ... to allow for abstractions over stem classes and inflections
 * it is in essence a programming language for linguists
-* ... where you spell out the morphology of a language such that a compiler can turn it into an executable program (with the help of a run-time engine)
+* ... where you spell out the morphology of a language such that a compiler can
+  turn it into an executable program
 
 </v-clicks>
 
@@ -408,10 +409,12 @@ All of these are open source except for the Xerox tools (which are free, though)
 
 ```
 LEXICON Root
-  iloinen:iloi nen-inflection ;
+  iloinen:iloi nen-adj-inflection ;
 
-LEXICON nen-inflection
+LEXICON nen-adj-inflection
+  +A+Sg+Nom:nen # ;
   +A+Sg+Gen:sen # ;
+  +A+Sg+Par:sta # ;
 ```
 
 </v-clicks>
@@ -450,7 +453,9 @@ LEXICON nen-inflection
 
 <v-clicks>
 
-Both TwolC and Xfst rewrite rules are supported by the GiellaLT infrastructure, compilation support is dependent on the compiler tool used: Foma does not support Twolc, everything else is supported by all tools.
+Both TwolC and Xfst rewrite rules are supported by the GiellaLT infrastructure, compilation support is dependent on the compiler tool used:
+
+`Foma` does not support Twolc, everything else is supported by all tools
 
 </v-clicks>
 
@@ -483,6 +488,11 @@ The pmatch scripts are key to a recent addition to our infrastructure: rule-base
 * formalism developed at Helsinki university by Fred Karlsson, later extended by Tapanainen (CG2), and further by the VISL project (CG3)
 * main idea is to remove or select specific possible readings of ambiguous words given context constraints:
   > in the context of a subject personal pronoun, select a verb reading that agrees with the pronoun in person and number
+  > <br/><br/>
+  > Cf. German `haben`: can be both Infinitive, 1Pl and 3Pl.
+  > <br/><br/>
+  > But with a subject pronoun
+  > `wir`, only 1Pl makes sense, so select it.
 * used a lot in text parsers in combination with morphological analysers, giving very good results
 * also used in language technology tools and products such as machine translation and grammar checking since the late 1990's
 
@@ -568,7 +578,8 @@ layout: two-cols
 
 ### Locale registration
 
-As part of the desktop keyboard installers, the locale of the keyboard is added to the system:
+As part of the desktop keyboard installers, the locale <br/>
+of the keyboard is added to the system:
 
 <v-click>
 
@@ -592,18 +603,28 @@ So that languages unknown to Windows and macOS is subsequently known and can be 
 
 ## Spellers
 
+<br/>
+<br/>
+
 A speller is made up of two parts:
 
 1. an acceptor - is this a correct word or not?
 1. an error model - if this is not a word, how is it most likely to be corrected?
 
+<v-clicks>
+
 In our infrastructure, both are finite state transducers. The acceptor is built from our general analyser, but restricted to only normatively correct forms.
 
 The error model contains a standard permutation fst for the relevant alphabet, with language specific additions based on likely errors made by writers.
 
+</v-clicks>
+
 ---
 
 ### Short turnaround during development
+
+<br/>
+<br/>
 
 1. add a word, correct some part of the morphology
 1. compile
@@ -685,11 +706,16 @@ layout: center
 <br/>
 <br/>
 
-* MS Word (web version for now, Win and Mac coming later)
+<v-clicks>
+
+* MS Word (as a web-based office extension for now)
 * GoogleDocs
 * planned support:
     * macOS (system wide), possibly Windows
     * LibreOffice
+    * regular MS Office grammar checker for Windows and macOS
+
+</v-clicks>
 
 <!--
 ### Screen shot from LibreOffice:
@@ -717,14 +743,46 @@ layout: center
 
 ## Text-to-speech systems
 
+<br/>
+<br/>
+
+* Commercial, closed source since 2014 — North Sámi
+* Working on open source solution based on HFST, VislCG and ML
+
+---
+
+### Closed source synthesis
+
+<br/>
+<br/>
+
+<v-clicks>
+
 * recordings and text available
 * technology unfortunately from a commercial company = closed source code
   * we have now been hunted by this - they are closing down the macOS version
   * we had fortunately already planned a new project for Julev Sámi that is completely built using open source, so we should be good in a couple of years
 * quality very good
-* the original plan was to use our own text processing for conversion to IPA or similar,
-  we are doing that in our new project
-* the idea is to use roughly the same text processing as we use for the grammar checker to produce a phonetic transcription, and feed that to the synthesis engine
+
+</v-clicks>
+
+---
+
+### Open-source synthesis
+
+<br/>
+<br/>
+
+<v-clicks>
+
+* the original plan was to use our own text processing for conversion to IPA or similar
+    * we are doing that now, in a new project for Lule Sámi
+* using a similar pipeline to the grammar checker one to produce a phonetic transcription
+* feeding that to the synthesis engine
+* synthesis done using machine learning / neural nets
+* 10 hours of recordings should be enough for high quality synthesis
+
+</v-clicks>
 
 ---
 
