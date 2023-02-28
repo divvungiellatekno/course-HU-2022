@@ -99,7 +99,7 @@ A very brief history — from cuneiform to speech recognition
 
 ### Some later instances of long-lasting language technology
 
-![Runes](/jelling%20runestone.jpg)
+![Runes](/jelling_runestone.jpg)
 
 ---
 
